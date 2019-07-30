@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # xianyun
 
 > My sweet Nuxt.js project
@@ -20,3 +21,6 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+=======
+# xianyun-34
+>>>>>>> 28c2e34deaa16edfe201eab4c7cfb4786f7510bf
