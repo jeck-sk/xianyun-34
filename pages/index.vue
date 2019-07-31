@@ -6,7 +6,7 @@
         <el-carousel-item v-for="(item,index) in banners" :key="index">
           <h3
             class="small"
-            :style=" `background:url(${$axios.defaults.baseURL+item.url}) center center no-repeat;
+            :style=" `background:url(${$axios.defaults.baseURL}${item.url}) center center no-repeat;
           background-size:contain contain;
                 `"
           ></h3>
@@ -38,7 +38,13 @@
 export default {
   data() {
     return {
-      banners: [],
+      banners: [
+              {url:'http://157.122.54.189:9095/assets/images/th01.jfif'},
+              {url:'http://157.122.54.189:9095/assets/images/th02.jfif'},
+              {url:'http://157.122.54.189:9095/assets/images/th03.jfif'},
+              {url:'http://157.122.54.189:9095/assets/images/th04.jfif'}
+      ],
+      
       options: [
         { title: "攻略", placeholder: "请输入城市" },
         { title: "酒店", placeholder: "请输入城市搜索酒店" },
@@ -47,6 +53,7 @@ export default {
       current: 0
     };
   },
+  // ${$axios.defaults.baseURL}
   methods: {
     handleClick(index) {
       if (index === 2) {

@@ -11,19 +11,19 @@
           <nuxt-link to="/hotel">酒店</nuxt-link>
           <nuxt-link to="/air">国内机票</nuxt-link>
         </el-row>
-        <div v-if="false">
+        <div v-if="!$store.state.user.userInfo.token">
           <nuxt-link to="/user/login">登录/注册</nuxt-link>
         </div>
         <div v-else>
           <el-dropdown>
             <span class="el-dropdown-link">
-              <img src="http://157.122.54.189:9095/assets/images/avatar.jpg" alt />
-              银河抽水机
+               <img :src="$axios.defaults.baseURL + $store.state.user.userInfo.user.defaultAvatar"/>
+              {{$store.state.user.userInfo.user.nickname}}
               <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>个人中心</el-dropdown-item>
-              <el-dropdown-item>退出</el-dropdown-item>
+              <el-dropdown-item @click.native="handleLogout">退出</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </div>
@@ -32,7 +32,16 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  mothod(){
+       this.$store.state.user.userInfo.user.nickname
+  },
+  methods:{
+    handleLogout(){
+        this.$store.commit('user/clearUserInfo')
+    }
+  }
+};
 </script>
 <style scoped lang="less">
 .header {
