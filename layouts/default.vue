@@ -28,7 +28,7 @@ a{
   color:inherit;
   text-decoration: none;
 }
-em i{
+em ,i{
   font-style: normal;
 }
 </style>
