@@ -55,8 +55,7 @@
 </template>
 
 <script>
-import moment from 'moment'
-import { constants } from 'crypto';
+import moment from 'moment';
 export default {
   data() {
     return {
@@ -182,17 +181,23 @@ export default {
           return;
       }
         
-        const airs =[...JSON.parse(localStorage.getItem('airs')||'[]')];
-        console.log(airs)
-        airs.unshift(this.form);
-        if(airs.length>5){
-          airs.length=5
-        }
-        localStorage.setItem("airs", JSON.stringify(airs));
+        // const airs =[...JSON.parse(localStorage.getItem('airs')||'[]')];
+        // console.log(airs)
+        // airs.unshift(this.form);
+        // if(airs.length>5){
+        //   airs.length=5
+        // }
+        // localStorage.setItem("airs", JSON.stringify(airs));
         this.$router.push({
           path:'/air/flights',
           query:this.form
       })
+       const arr=[...this.$store.state.air.history]
+       arr.unshift(this.form)
+       if(arr.length>5){
+         arr.length=5
+       }
+       this.$store.commit('air/sethistory',arr)
     }
   },
   mounted() {}
