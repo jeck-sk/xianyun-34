@@ -56,6 +56,7 @@
 
 <script>
 import moment from 'moment'
+import { constants } from 'crypto';
 export default {
   data() {
     return {
@@ -96,10 +97,9 @@ export default {
       }).then(res => {
           console.log(res)
         const { data } = res.data;
-        const newData = [];
-        data.forEach(v => {
+        const newData =data.map(v => {
           v.value = v.name.replace("市", "");
-          newData.push(v);
+          return v ;
         });
         this.form.departCity = newData[0].value;
         this.form.departCode = newData[0].sort;
@@ -134,18 +134,19 @@ export default {
 
     // 出发城市下拉选择时触发
     handleDepartSelect(item) {
-      this.form.departCity = item.value;
+      // this.form.departCity = item.value;
       this.form.departCode = item.sort;
     },
 
     // 目标城市下拉选择时触发
     handleDestSelect(item) {
-      this.form.destCity = item.value;
+      // this.form.destCity = item.value;
       this.form.destCode = item.sort;
     },
 
     // 确认选择日期时触发
     handleDate(value) {
+      console.log(value)
     //   this.form.departDate = moment(value).format("YYYY-MM-DD");
       this.form.departDate = moment(value).format("YYYY-MM-DD");
     },
@@ -180,7 +181,15 @@ export default {
           })
           return;
       }
-      this.$router.push({
+        
+        const airs =[...JSON.parse(localStorage.getItem('airs')||'[]')];
+        console.log(airs)
+        airs.unshift(this.form);
+        if(airs.length>5){
+          airs.length=5
+        }
+        localStorage.setItem("airs", JSON.stringify(airs));
+        this.$router.push({
           path:'/air/flights',
           query:this.form
       })

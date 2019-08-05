@@ -41,13 +41,8 @@
     <div class="air-sale">
       <el-row type="flex" class="vir-sale-pic" justify="space-between">
         <el-col :span="6" v-for="(item,index) in sales" :key="index" >
-               <nuxt-link :to="`
-                /air/flights?
-                departCity=${item.departCity}
-                &departCode=${item.departCode}
-                &destCity=${item.destCity}
-                &destCode=${item.destCode}
-                &departDate=${item.departDate}`">
+               <nuxt-link :to='
+               `/air/flights?departCity=${item.departCity}&departCode=${item.departCode}&departDate=${item.departDate}&destCity=${item.destCity}&destCode=${item.destCode}`'>
                  <img :src="item.cover"/>
                   <el-row class="layer-bar" type="flex" justify="space-between"> 
                       <span>{{item.departCity}}-{{item.destCity}}</span>
