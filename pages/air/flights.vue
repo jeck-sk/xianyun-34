@@ -49,7 +49,7 @@ import FlightsAside from "@/components/air/flightsAside.vue";
 export default {
    watch: {
         $route(){
-             this.getdata();
+            this.getdata();
         }
     },
   components: {
